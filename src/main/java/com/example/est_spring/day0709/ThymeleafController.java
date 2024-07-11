@@ -17,4 +17,11 @@ public class ThymeleafController {
         return "index";
     }
 
+
+/*    @GetMapping("/index")
+    public String index(@RequestParam("name") String name, Model model) {
+        model.addAttribute("name1", name);
+        return "index";
+    }*/
+
 }
