@@ -1,13 +1,11 @@
 package com.example.est_spring.weekly_4_quiz.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "Order_Item")
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -20,5 +18,12 @@ public class OrderItem {
 
     @Column(nullable = false)
     private Integer quantity;
+
+    @Column(nullable = false)
+    private Integer price;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 
 }

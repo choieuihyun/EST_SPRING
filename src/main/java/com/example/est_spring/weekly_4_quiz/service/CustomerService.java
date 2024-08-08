@@ -7,6 +7,11 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 @Service
 public class CustomerService {
 
@@ -22,6 +27,33 @@ public class CustomerService {
         Customer customer = customerDto.toEntity();
         Customer savedCustomer = customerRepository.save(customer);
         return CustomerDto.fromEntity(savedCustomer);
+    }
+
+    // 코드 구조를 잘 모르겠단말여
+    @Transactional
+    public List<CustomerDto> getAllCustomer(CustomerDto customerDto) {
+        return customerRepository.findAll().stream()
+                .map(CustomerDto::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    // 여기서 Optional 타입으로 래핑해야 Controller에서 ResponseEntity로 반환.
+    @Transactional
+    public Optional<CustomerDto> getCustomer(Long id) {
+        return customerRepository.findById(id)
+                .map(CustomerDto::fromEntity);
+    }
+
+    @Transactional
+    public Optional<CustomerDto> updateCustomer(Long id, CustomerDto customerDto) {
+        return customerRepository.findById(id)
+                .map(existingCustomer -> {
+                    existingCustomer.setName(customerDto.getName());
+                    existingCustomer.setAddress(customerDto.getAddress());
+                    existingCustomer.setOrders(customerDto.toEntity().getOrders());
+                    existingCustomer.setPhoneNumber(customerDto.getPhoneNumber());
+                    return CustomerDto.fromEntity(existingCustomer);
+                });
     }
 
 }

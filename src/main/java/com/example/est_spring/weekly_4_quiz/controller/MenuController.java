@@ -29,16 +29,16 @@ public class MenuController {
 
     @GetMapping("/{id}")
     public ResponseEntity<MenuDto> getMenuById(@PathVariable Long id) {
-        return menuService.getMenuById(id)
+        return menuService.getMenu(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public ResponseEntity<MenuDto> createMenu(@RequestBody MenuDto menuDto) {
-        MenuDto createMenu = menuService.createMenu(menuDto);
-        return new ResponseEntity<>(createMenu, HttpStatus.CREATED);
-    }
+//    @PostMapping
+//    public ResponseEntity<MenuDto> createMenu(@RequestBody MenuDto menuDto) {
+//        MenuDto createMenu = menuService.createMenu(menuDto);
+//        return new ResponseEntity<>(createMenu, HttpStatus.CREATED);
+//    }
 
     // name으로 찍어주는게 맞지않나?
     @PutMapping("/{id}")

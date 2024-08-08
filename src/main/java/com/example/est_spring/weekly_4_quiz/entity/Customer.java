@@ -1,16 +1,14 @@
 package com.example.est_spring.weekly_4_quiz.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "Customer")
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -31,7 +29,7 @@ public class Customer {
     private String address;
 
     // 여기서 생성을 해야되나?
-    @OneToMany
-    private List<Order> orders = new ArrayList<>();
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orders;
 
 }

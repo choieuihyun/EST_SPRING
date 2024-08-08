@@ -5,11 +5,17 @@
     <title>Title</title>
 </head>
 <body>
-<h1>스프링 부트 타임리프 홈페이지 테스트</h1>
-<p th:text="${name}">메세지가 표시됩니다.</p>
-<p th:text="${age}">메세지가 표시됩니다.</p>
-<p th:text="${gender}">메세지가 표시됩니다.</p>
-<p th:text="${language}">메세지가 표시됩니다.</p>
-<p th:text="${money}">메세지가 표시됩니다.</p>
+<h1>스프링부트 타임리프 홈페이지 테스트</h1>
+<div th:object="${user}">
+    <p>이름 : <span th:text="*{username}"></span></p>
+    <p>이메일 : <span th:text="*{email}"></span></p>
+    <p th:if="*{admin}">이 사람은 관리자 권한이 있습니다.</p>
+</div>
+
+<form th:action="@{/users}" method="post">
+    <input type="text" name="userName">
+    <input type="email" name="email">
+    <button type="submit">저장</button>
+</form>
 </body>
 </html>

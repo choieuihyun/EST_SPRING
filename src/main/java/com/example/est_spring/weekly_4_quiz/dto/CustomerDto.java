@@ -18,7 +18,6 @@ public class CustomerDto {
     private String name;
     private String phoneNumber;
     private String address;
-    private List<Order> orders = new ArrayList<>();
 
     public static CustomerDto fromEntity(Customer customer) {
         return CustomerDto.builder()
@@ -31,13 +30,12 @@ public class CustomerDto {
     }
 
     public Customer toEntity() {
-        return new Customer(
-                this.id,
-                this.name,
-                this.address,
-                this.phoneNumber,
-                this.orders
-        );
+        return Customer.builder()
+                .id(this.id)
+                .name(this.name)
+                .address(this.address)
+                .phoneNumber(this.phoneNumber)
+                .build();
 
     }
 }

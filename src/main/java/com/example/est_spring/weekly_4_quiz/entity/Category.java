@@ -1,13 +1,13 @@
 package com.example.est_spring.weekly_4_quiz.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Category")
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -20,5 +20,8 @@ public class Category {
 
     @Column(nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "category")
+    private List<Menu> menus;
 
 }

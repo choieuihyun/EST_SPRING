@@ -1,16 +1,15 @@
 package com.example.est_spring.weekly_4_quiz.entity;
 
+import com.example.est_spring.weekly_4_quiz.dto.StoreDto;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "Store")
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -30,10 +29,14 @@ public class Store {
     @Column
     private String phoneNumber;
 
-    @OneToMany
-    private List<Order> orderList = new ArrayList<>();
+    @OneToMany(mappedBy = "store")
+    private List<Order> orderList;
 
-    @OneToMany
-    private List<Menu> menuList = new ArrayList<>();
+    @OneToMany(mappedBy = "store")
+    private List<Menu> menuList;
+
+//    public Store updateStore(StoreDto storeDto) {
+//        return Store.builder().build();
+//    }
 
 }

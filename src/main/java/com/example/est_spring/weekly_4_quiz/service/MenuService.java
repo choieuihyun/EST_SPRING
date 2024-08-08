@@ -21,12 +21,12 @@ public class MenuService {
         this.menuRepository = menuRepository;
     }
 
-    @Transactional
-    public MenuDto createMenu(MenuDto menuDto) {
-        Menu menu = menuDto.toEntity();
-        Menu createdMenu = menuRepository.save(menu);
-        return MenuDto.fromEntity(createdMenu);
-    }
+//    @Transactional
+//    public MenuDto createMenu(MenuDto menuDto) {
+//        //Menu menu = menuDto.toEntity();
+//        //Menu createdMenu = menuRepository.save(menu);
+//        return MenuDto.fromEntity(createdMenu);
+//    }
 
     @Transactional(readOnly = true)
     public List<MenuDto> getAllMenu() {
@@ -36,7 +36,7 @@ public class MenuService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<MenuDto> getMenuById(Long id) {
+    public Optional<MenuDto> getMenu(Long id) {
         return menuRepository.findById(id)
                 .map(MenuDto::fromEntity);
     }
@@ -65,8 +65,6 @@ public class MenuService {
                 })
                 .orElse(false);
     }
-
-
 
 
 }

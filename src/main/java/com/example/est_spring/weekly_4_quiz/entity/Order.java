@@ -3,6 +3,8 @@ package com.example.est_spring.weekly_4_quiz.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "CustomerOrder")
 @Builder
@@ -23,11 +25,14 @@ public class Order {
     private int orderStatus;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "store_id")
     private Store store;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItems;
 
 }

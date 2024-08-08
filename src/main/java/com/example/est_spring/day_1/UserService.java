@@ -1,4 +1,4 @@
-package com.example.est_spring;
+package com.example.est_spring.day_1;
 
 import org.springframework.stereotype.Service;
 
